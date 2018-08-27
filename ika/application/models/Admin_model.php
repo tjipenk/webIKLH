@@ -612,6 +612,8 @@ public function hitung_ika_year($i,$year)
 	return $cal;
 }
 
+
+
 public function get_ika_dashboard() 
 	{
 
@@ -650,6 +652,72 @@ public function get_ika_dashboard()
 	
 		return $result;
 	}
+
+	
+	public function get_data_bobot_prov($i,$year) {
+		$this->db->select('*');
+		$this->db->from('bobot');
+		$this->db->where('id_prov',$i);
+		$this->db->where('tahun',$year);
+		//$this->db->where('validated',1);
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		 return $query->result_array();
+		//var_dump($query->first_row());
+	}
+
+	public function get_ika_nasional($year) 
+	{
+
+		$r_prov = $this->data_provinsi();
+		$nasional = 0;
+		foreach ($r_prov as $prov){
+			$r_sungai0 = $this->get_data_sungai_prov_years($prov['id_prov'],$year);
+			$bobot = $this->get_data_bobot_prov($prov['id_prov'],$year);
+			$ika = 0; $n = 0;
+				foreach ($r_sungai0 as $sungai){
+				//	print_r($this->hitung_ika($sungai['id_sungai']));
+					$ika = $ika + $this->hitung_ika($sungai['id_sungai'])['ika'];
+					$n = $n+1;
+				}
+			$nasional = $nasional + ($ika/$n)*$bobot[0]['bobot']/100;
+
+			//print_r($result);
+			
+		}
+			$result = array('ika'=>$nasional);
+		//print_r($result);
+	
+		return $result;
+	}
+	
+	public function get_indeks_nasional($year) 
+	{
+
+		$r_prov = $this->data_provinsi();
+		$m = 0;
+		$ika = 0;
+		//$iku = 0;
+		//$iktl = 0;
+		//$iklh = 0;
+		foreach ($r_prov as $prov){
+			$bobot = $this->get_data_bobot_prov($prov['id_prov'],$year);
+			$index = $this->get_indeks_prov($prov['id_prov'],$year);
+			$ika = $ika + $bobot[0]['bobot']*$index[0]['ika']/100;
+		//	$iku = $iku + $bobot[0]['bobot']*$index[0]['iku']/100;
+		//	$iktl = $iktl + $bobot[0]['bobot']*$index[0]['iktl']/100;
+		//	$iklh = $iklh + $bobot[0]['bobot']*$index[0]['iklh']/100;
+				
+		}
+		
+		$result= array(		'ika'	=>	$ika,
+							'iku'	=>	$iku,
+							'iktl'	=>	$iktl,
+							'iklh'	=>	$iklh);
+		//print_r($result);
+		return $result;
+	}
+    
     
 }
 

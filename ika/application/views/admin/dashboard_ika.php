@@ -48,12 +48,20 @@
                                                         
                                                         <?php endforeach; ?>
                                                         
-
+                                                        <tr data-id="<?php echo 0; ?>">
+                                                            <td><?php echo 'Nasional';?></td>
+                                                            <td><?php echo number_format($nasional2['ika'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional1['ika'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional['ika'], 2); ?></td>																						
+                                                        </tr>    
+                                                        
                                                     <?php else: ?>
 
                                                     No Data Sungai.
 
                                                     <?php endif; ?>
+
+                                                             
                                         </tbody>
                                     </table>
 	</div>			

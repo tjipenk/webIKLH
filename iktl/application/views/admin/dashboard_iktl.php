@@ -52,7 +52,13 @@
                                                         
                                                         <?php endforeach; ?>
                                                         
-
+                                                        <tr data-id="<?php echo 0; ?>">
+                                                            <td><?php echo $this->admin_model->get_nama_wilayah(0)[0]['nama'];?></td>
+                                                            <td><?php echo number_format($nasional2['iktl'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional1['iktl'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional['iktl'], 2); ?></td>																										
+                                                        </tr>                                                       
+                                                        
                                                     <?php else: ?>
 
                                                     No Data Sungai.

@@ -465,6 +465,18 @@ class Admin_model extends CI_Model
 		//var_dump($query->first_row());
 	}
 
+	public function get_iktl_prov($i,$year) {
+		$this->db->select('*');
+		$this->db->from('rekap');
+		$this->db->where('id_prov',$i);
+		$this->db->where('tahun',$year);
+		//$this->db->where('validated',1);
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		 return $query->result_array();
+		//var_dump($query->first_row());
+	}
+
 	public function get_data_dashboard() {
 		$y = date("Y");
 		$y1 = date("Y",strtotime("-1 year"));
@@ -485,7 +497,42 @@ class Admin_model extends CI_Model
 		//var_dump($query->first_row());
 	}
 
+	
+	public function get_data_bobot_prov($i,$year) {
+		$this->db->select('*');
+		$this->db->from('bobot');
+		$this->db->where('id_prov',$i);
+		$this->db->where('tahun',$year);
+		//$this->db->where('validated',1);
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		 return $query->result_array();
+		//var_dump($query->first_row());
+	}
 
+	public function get_iktl_nasional($year) 
+	{
+
+		$r_prov = $this->data_provinsi();
+		$m = 0;
+		//$ika = 0;
+		//$iku = 0;
+		$iktl = 0;
+		//$iklh = 0;
+		foreach ($r_prov as $prov){
+			$bobot = $this->get_data_bobot_prov($prov['id_prov'],$year);
+			$index = $this->get_iktl_prov($prov['id_prov'],$year);
+			//$ika = $ika + $bobot[0]['bobot']*$index[0]['ika']/100;
+			//$iku = $iku + $bobot[0]['bobot']*$index[0]['iku']/100;
+			$iktl = $iktl + $bobot[0]['bobot']*$index[0]['iktl']/100;
+			//$iklh = $iklh + $bobot[0]['bobot']*$index[0]['iklh']/100;
+				
+		}
+		
+		$result= array(		'iktl'	=>	$iktl);
+		//print_r($result);
+		return $result;
+	}
 
 
 

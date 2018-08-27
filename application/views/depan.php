@@ -58,6 +58,17 @@
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
 <div class="sc_content mainWrap" id="main">
 <section class="section_padding_top_80 section_padding_bottom_50 with_border_bottom">
 <div class="container">
@@ -75,11 +86,11 @@ Kementerian Lingkungan Hidup dan Kehutanan (KLHK) dalam pengelolaan segala infor
 </div>
 <h5 class="sc_title sc_title_style_2 sc_title_center">Kualitas Air</h5>
 <div class="sc_text sc_text_style_1">
-<p>“Menu ini berisi informasi mengenai data-data kualitas air di tiap-tiap daerah pada tingkatan kabupaten dan provinsi.“</p>
+<p>“Menu ini berisi informasi mengenai data-data kualitas dan performa tutupan lahan hutan di tiap-tiap daerah pada tingkatan kabupaten dan provinsi.“</p>
 </div>
 
 <center>
-<a href="./ika/user/daftar" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
+<a href="./dashboard/tanam" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
 </center>
 
 </div>
@@ -93,11 +104,11 @@ Kementerian Lingkungan Hidup dan Kehutanan (KLHK) dalam pengelolaan segala infor
 </div>
 <h5 class="sc_title sc_title_style_2 sc_title_center">Kualitas Udara</h5>
 <div class="sc_text sc_text_style_1">
-<p>“Menu ini berisi informasi mengenai data-data kualitas udara di tiap-tiap daerah pada tingkatan kabupaten dan provinsi.“</p>
+<p>“Menu ini berisi informasi mengenai data-data kualitas dan performa tutupan lahan hutan di tiap-tiap daerah pada tingkatan kabupaten dan provinsi.“</p>
 </div>
 
 <center>
-<a href="./iku/user/daftar" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
+<a href="./dashboard/tanam" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
 </center>
 
 </div>
@@ -114,7 +125,7 @@ Kementerian Lingkungan Hidup dan Kehutanan (KLHK) dalam pengelolaan segala infor
 </div>
 
 <center>
-<a href="./iktl/user/daftar" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
+<a href="./dashboard/tanam" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
 </center>
 
 
@@ -129,11 +140,11 @@ Kementerian Lingkungan Hidup dan Kehutanan (KLHK) dalam pengelolaan segala infor
 </div>
 <h5 class="sc_title sc_title_style_2 sc_title_center">Rekap IKLH</h5>
 <div class="sc_text sc_text_style_1">
-<p>“Menu ini berisi informasi mengenai data-data kualitas lingkungan hidup di tiap-tiap daerah pada tingkatan kabupaten dan provinsi.“</p>
+<p>“Menu ini berisi informasi mengenai data-data kualitas dan performa tutupan lahan hutan di tiap-tiap daerah pada tingkatan kabupaten dan provinsi.“</p>
 </div>
 
 <center>
-<a href="./user/daftar" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
+<a href="./dashboard/tanam" class="sc_button  sc_button_skin_dark sc_button_style_bg sc_button_size_medium">Lihat </a>
 </center>
 
 </div>

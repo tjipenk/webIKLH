@@ -30,7 +30,13 @@ private $user_id = "";
 		$sel['sel'] = "dashboard";
 		//$p = $this->input->post('p');
 		//$year = 2017;
+		$y = date("Y");
+		$y1 = date("Y",strtotime("-1 year"));
+		$y2 = date("Y",strtotime("-2 year"));
 		$data['sungai'] = $this->admin_model->get_data_dashboard();		
+		$data['nasional'] = $this->admin_model->get_iktl_nasional($y);
+		$data['nasional1'] = $this->admin_model->get_iktl_nasional($y1);
+		$data['nasional2'] = $this->admin_model->get_iktl_nasional($y2);
 		
 		//print_r($data);
   		$this->load->view('layout/header');
