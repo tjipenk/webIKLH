@@ -1,0 +1,15 @@
+ogr2ogr -f "ESRI Shapefile" -where "pl16_id >= 2001 and pl16_id <= 2006 or pl16_id = 20041 or pl16_id = 20051" -t_srs EPSG:32749 ./shp/Frs2016UTM.shp ./shp/PL_2016.shp
+
+saga_cmd shapes_polygons 
+
+saga_cmd shapes_polygons 14 -A ./shp/Frs2016.shp -B ./shp/administrasi_kab_2017.shp -RESULT ./shp/Frs2016adm.shp
+
+saga_cmd shapes_polygons 14 -A ./shp/Frs2016UTM.shp -B ./shp/admin2017.shp -RESULT ./shp/Frs2016admUTM.shp
+
+
+
+saga_cmd shapes_polygons 2 -POLYGONS ./shp/admin2017.shp -OUTPUT ./shp/admin2017_area.shp 
+
+saga_cmd shapes_polygons 2 -POLYGONS ./shp/Frs2016admUTM.shp -OUTPUT ./shp/Frs2016admUTM_area.shp
+
+tambahan dari alrayan
