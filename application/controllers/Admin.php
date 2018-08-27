@@ -29,8 +29,14 @@ private $user_id = "";
     {
 		$sel['sel'] = "dashboard";
 		//$p = $this->input->post('p');
-		//$year = 2017;
+		$y = date("Y");
+		$y1 = date("Y",strtotime("-1 year"));
+		$y2 = date("Y",strtotime("-2 year"));
 		$data['sungai'] = $this->admin_model->get_data_dashboard();		
+		$data['nasional'] = $this->admin_model->get_indeks_nasional($y);
+		$data['nasional1'] = $this->admin_model->get_indeks_nasional($y1);
+		$data['nasional2'] = $this->admin_model->get_indeks_nasional($y2);
+
 		
 		//print_r($data);
   		$this->load->view('layout/header');
@@ -47,7 +53,7 @@ private $user_id = "";
 		$year = $this->uri->segment('3');
 		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");}
 		$data['sungai'] = $this->admin_model->get_rekap_iktl($year);		
-		
+		$data['nasional'] = $this->admin_model->get_indeks_nasional($year);
 		//print_r($data);
   		$this->load->view('layout/header');
         $this->load->view('layout/navigation', $sel);

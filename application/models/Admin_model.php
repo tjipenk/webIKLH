@@ -454,9 +454,32 @@ class Admin_model extends CI_Model
 		//var_dump($query->first_row());
 	}
 
+	public function get_data_bobot_prov($i,$year) {
+		$this->db->select('*');
+		$this->db->from('bobot');
+		$this->db->where('id_prov',$i);
+		$this->db->where('tahun',$year);
+		//$this->db->where('validated',1);
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		 return $query->result_array();
+		//var_dump($query->first_row());
+	}
+
 	public function get_rekap_iktl($year) {
 		$this->db->select('*');
 		$this->db->from('rekap');
+		$this->db->where('tahun',$year);
+		//$this->db->where('validated',1);
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		 return $query->result_array();
+		//var_dump($query->first_row());
+	}
+	public function get_indeks_prov($i,$year) {
+		$this->db->select('*');
+		$this->db->from('rekap');
+		$this->db->where('id_prov',$i);
 		$this->db->where('tahun',$year);
 		//$this->db->where('validated',1);
 		//$this->db->limit(1);
@@ -484,6 +507,90 @@ class Admin_model extends CI_Model
 		 return $query->result_array();
 		//var_dump($query->first_row());
 	}
+
+	public function hitung_ika_year($i,$year)
+{
+	//$year = date("Y");
+	$data = $this->get_pengamatan_sungai_years($i, $year);
+	if(count($data)!=0){
+	$par = $this->get_par_ika();
+	
+	$cal = array('id_sungai' => $data[0]['id_sungai'],
+				 'id_par' => $par[0]['id'],
+				 'tss'    => $data[0]['tss']/$par[0]['tss'],
+				 'do'  	  => $par[0]['do']/$data[0]['do'],
+				 'bod' 	  => $data[0]['bod']/$par[0]['bod'],
+				 'cod' 	  => $data[0]['cod']/$par[0]['cod'],
+				 'tf'	  => $data[0]['tf']/$par[0]['tf'],
+				 'fcoli'  => $data[0]['fcoli']/$par[0]['fcoli'],
+				 'tcoli'  => $data[0]['tcoli']/$par[0]['tcoli']);
+
+	$cal['tss'] 	= $this->perbaikan_log($cal['tss'] );
+	$cal['do'] 		= $this->perbaikan_log($cal['do'] );
+	$cal['bod'] 	= $this->perbaikan_log($cal['bod'] );
+	$cal['cod'] 	= $this->perbaikan_log($cal['cod'] );
+	$cal['tf'] 		= $this->perbaikan_log($cal['tf'] );
+	$cal['fcoli'] 	= $this->perbaikan_log($cal['fcoli'] );
+	$cal['tcoli'] 	= $this->perbaikan_log($cal['tcoli'] );
+							 
+	$cal['avg']	  	= ($cal['tss']+$cal['do']+$cal['bod']+$cal['cod']+$cal['tf']+$cal['fcoli']+$cal['tcoli'])/7;
+	$cal['max']   	= max($cal['tss'],$cal['do'],$cal['bod'],$cal['cod'],$cal['tf'],$cal['fcoli'],$cal['tcoli']);
+	$cal['avg2'] 	= $cal['avg']*$cal['avg'];
+	$cal['max2'] 	= $cal['max']*$cal['max'];
+	$cal['Pij'] 	= sqrt(($cal['avg2']+$cal['max2'])/2);
+	
+	switch (true) {
+		case $cal['Pij'] <=1 :
+			$cal['ika'] = 100;
+			break;
+		case $cal['Pij'] <=4.67:
+			$cal['ika'] = 80;
+			break;
+		case $cal['Pij'] <=6.32:
+			$cal['ika'] = 60;
+			break;
+		case $cal['Pij'] <=6.88:
+			$cal['ika'] = 40;
+			break;
+		case $cal['Pij'] >=6.88:
+			$cal['ika'] = 20;
+			break;
+		}
+	//var_dump($cal);
+	}
+	else{
+		$cal['ika'] = 0;
+	}
+	return $cal;
+}
+
+	public function get_indeks_nasional($year) 
+	{
+
+		$r_prov = $this->data_provinsi();
+		$m = 0;
+		$ika = 0;
+		$iku = 0;
+		$iktl = 0;
+		$iklh = 0;
+		foreach ($r_prov as $prov){
+			$bobot = $this->get_data_bobot_prov($prov['id_prov'],$year);
+			$index = $this->get_indeks_prov($prov['id_prov'],$year);
+			$ika = $ika + $bobot[0]['bobot']*$index[0]['ika']/100;
+			$iku = $iku + $bobot[0]['bobot']*$index[0]['iku']/100;
+			$iktl = $iktl + $bobot[0]['bobot']*$index[0]['iktl']/100;
+			$iklh = $iklh + $bobot[0]['bobot']*$index[0]['iklh']/100;
+				
+		}
+		
+		$result= array(		'ika'	=>	$ika,
+							'iku'	=>	$iku,
+							'iktl'	=>	$iktl,
+							'iklh'	=>	$iklh);
+		//print_r($result);
+		return $result;
+	}
+    
 
 
 
