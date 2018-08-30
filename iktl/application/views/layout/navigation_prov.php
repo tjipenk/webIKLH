@@ -17,32 +17,41 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="<?php echo base_url(); ?>admin_prov/dashboard">Akuisisi Data IKA</a>
+      <a class="navbar-brand" href="<?php echo base_url(); ?>admin_prov/dashboard">Aplikasi Perhitungan Indeks KTL</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 
         <li class="dropdown ">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pemantauan Air<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Provinsi <?php echo $this->admin_model->get_nama_wilayah($this->session->userdata('provinsi'))[0]['nama']?><span class="caret"></span></a>
           <ul class="dropdown-menu">
-               <li><a href="<?php echo base_url(); ?>admin_prov/daftar_sungai">Daftar Lokasi Sungai</a></li> 
-               <li><a href="<?php echo base_url(); ?>admin_prov/data_sungai">Data Pemantauan</a></li>
-          </ul>
+          <?php /*
+               <li><a href="<?php echo base_url(); ?>admin_prov/dashboard">Dashboard IKTL Nasional</a></li> 
+               <li><a href="<?php echo base_url(); ?>admin_prov/daftar_tutupan">Daftar Peta Tutupan Lahan</a></li> 
+               */ ?>
+               <li class="dropdown-submenu">
+                    <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data IKTL</a>
+                    <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iktl/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iktl/<?php echo date("Y",strtotime("-1 year"));?>"><?php echo date("Y",strtotime("-1 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iktl/<?php echo date('Y');?>"><?php echo date('Y');?></a></li>
+                    </ul>
+                </li>
+               </ul>
         </li>
-
-      
+<?php /*
         <li class="dropdown ">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Petugas<span class="caret"></span></a>
           <ul class="dropdown-menu">
                <li><a href="<?php echo base_url(); ?>admin_prov/users">Daftar Petugas</a></li> 
-          </ul>
+               </ul>
         </li>
-
+*/ ?>
 
 
 
 		
-          <li class="hide"><a href="<?php echo base_url(); ?>admin/options">Pengaturan</a></li>    
+          <li class="hide"><a href="<?php echo base_url(); ?>admin_prov/options">Pengaturan</a></li>    
 	 </ul>
 
       <ul class="nav navbar-nav navbar-right ">
@@ -104,3 +113,14 @@
     </div>
   </div>
 </nav>
+
+
+<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.rekap').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
