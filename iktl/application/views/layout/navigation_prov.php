@@ -30,6 +30,46 @@
                <li><a href="<?php echo base_url(); ?>admin_prov/daftar_tutupan">Daftar Peta Tutupan Lahan</a></li> 
                */ ?>
                <li class="dropdown-submenu">
+                    <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data ITH</a>
+                    <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ith/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ith/<?php echo date("Y",strtotime("-1 year"));?>"><?php echo date("Y",strtotime("-1 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ith/<?php echo date('Y');?>"><?php echo date('Y');?></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu">
+                    <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data IKH</a>
+                    <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikh/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikh/<?php echo date("Y",strtotime("-1 year"));?>"><?php echo date("Y",strtotime("-1 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikh/<?php echo date('Y');?>"><?php echo date('Y');?></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu">
+                    <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data IKT</a>
+                    <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikta/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikta/<?php echo date("Y",strtotime("-1 year"));?>"><?php echo date("Y",strtotime("-1 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikta/<?php echo date('Y');?>"><?php echo date('Y');?></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-submenu">
+                    <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data IKBA</a>
+                    <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikba/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikba/<?php echo date("Y",strtotime("-1 year"));?>"><?php echo date("Y",strtotime("-1 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_ikba/<?php echo date('Y');?>"><?php echo date('Y');?></a></li>
+                    </ul>
+                </li>
+               <li class="dropdown-submenu">
+                    <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data IPH</a>
+                    <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iph/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iph/<?php echo date("Y",strtotime("-1 year"));?>"><?php echo date("Y",strtotime("-1 year"));?></a></li>
+                    <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iph/<?php echo date('Y');?>"><?php echo date('Y');?></a></li>
+                    </ul>
+                </li>
+               <li class="dropdown-submenu">
                     <a class="rekap" data-toggle="dropdown-submenu" href="#">Rekap Data IKTL</a>
                     <ul class="dropdown-menu">
                     <li><a href="<?php echo base_url(); ?>admin_prov/rekap_iktl/<?php echo date("Y",strtotime("-2 year"));?>"><?php echo date("Y",strtotime("-2 year"));?></a></li>

@@ -22,8 +22,6 @@ private $user_id = "";
 	public function index() 
 	{
 		redirect('/admin_prov/dashboard', 'location');
-	//	redirect('/admin/daftar_sungai', 'location');
-
 	}
 
 	public function dashboard()
@@ -52,7 +50,7 @@ private $user_id = "";
 		$sel['sel'] = "rekap";
 		//$p = $this->input->post('p');
 		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");}
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y"); $year = date("Y");}
 		$data['sungai'] = $this->admin_model->get_rekap_iktl($year);		
 		
 		//print_r($data);
@@ -61,7 +59,91 @@ private $user_id = "";
         $this->load->view('admin_prov/rekap_iktl', $data);
 		
         $this->load->view('layout/footer');
+	}
+	public function rekap_ikh()
+    {
+		$sel['sel'] = "rekap";
+		//$p = $this->input->post('p');
+		$year = $this->uri->segment('3');
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
+		$data['sungai'] = $this->admin_model->get_ikh($year);		
+		$data['iph'] = "";
+
+		//print_r($data);
+  		$this->load->view('layout/header');
+        $this->load->view('layout/navigation_prov', $sel);
+        $this->load->view('admin_prov/rekap_ikh', $data);
+		
+        $this->load->view('layout/footer');
     }
+	public function rekap_ikba()
+    {
+		$sel['sel'] = "rekap";
+		//$p = $this->input->post('p');
+		$year = $this->uri->segment('3');
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
+		$data['sungai'] = $this->admin_model->get_ikba($year);		
+		$data['iph'] = "";
+
+		//print_r($data);
+  		$this->load->view('layout/header');
+        $this->load->view('layout/navigation_prov', $sel);
+        $this->load->view('admin_prov/rekap_ikba', $data);
+		
+        $this->load->view('layout/footer');
+    }
+	public function rekap_ikta()
+    {
+		$sel['sel'] = "rekap";
+		//$p = $this->input->post('p');
+		$year = $this->uri->segment('3');
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
+		$data['sungai'] = $this->admin_model->get_ikta($year);		
+		$data['iph'] = "";
+
+		//print_r($data);
+  		$this->load->view('layout/header');
+        $this->load->view('layout/navigation_prov', $sel);
+        $this->load->view('admin_prov/rekap_ikta', $data);
+		
+        $this->load->view('layout/footer');
+    }
+	public function rekap_ith()
+    {
+		$sel['sel'] = "rekap";
+		//$p = $this->input->post('p');
+		$year = $this->uri->segment('3');
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
+		$data['sungai'] = $this->admin_model->get_ith($year);		
+		$data['iph'] = "";
+
+		//print_r($data);
+  		$this->load->view('layout/header');
+        $this->load->view('layout/navigation_prov', $sel);
+        $this->load->view('admin_prov/rekap_ith', $data);
+		
+        $this->load->view('layout/footer');
+	}
+	
+	public function rekap_iph()
+    {
+		$sel['sel'] = "rekap";
+		//$p = $this->input->post('p');
+		$year = $this->uri->segment('3');
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
+		$data['sungai'] = $this->admin_model->get_iph($year);		
+		$data['iph'] = "";
+
+		//print_r($data);
+  		$this->load->view('layout/header');
+        $this->load->view('layout/navigation_prov', $sel);
+        $this->load->view('admin_prov/rekap_iph', $data);
+		
+        $this->load->view('layout/footer');
+	}
+	
+	
+
 	/* users menu */
 	
 	public function users()

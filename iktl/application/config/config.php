@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localserver/pe-iklh-server/iktl';
+$config['base_url'] = 'http://local.s1/pe-iklh-server/iktl';
 
 /*
 |--------------------------------------------------------------------------
