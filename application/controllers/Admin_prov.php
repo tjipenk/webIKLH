@@ -22,128 +22,45 @@ private $user_id = "";
 	public function index() 
 	{
 		redirect('/admin_prov/dashboard', 'location');
-	}
+	//	redirect('/admin/daftar_sungai', 'location');
 
+	}
 	public function dashboard()
     {
 		$sel['sel'] = "dashboard";
 		//$p = $this->input->post('p');
-		//$year = 2017;
 		$y = date("Y");
 		$y1 = date("Y",strtotime("-1 year"));
 		$y2 = date("Y",strtotime("-2 year"));
 		$data['sungai'] = $this->admin_model->get_data_dashboard();		
-		$data['nasional'] = $this->admin_model->get_iktl_nasional($y);
-		$data['nasional1'] = $this->admin_model->get_iktl_nasional($y1);
-		$data['nasional2'] = $this->admin_model->get_iktl_nasional($y2);
+		$data['nasional'] = $this->admin_model->get_indeks_nasional($y);
+		$data['nasional1'] = $this->admin_model->get_indeks_nasional($y1);
+		$data['nasional2'] = $this->admin_model->get_indeks_nasional($y2);
+
 		
 		//print_r($data);
   		$this->load->view('layout/header');
         $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/dashboard_iktl', $data);
+        $this->load->view('admin_prov/dashboard_iklh', $data);
 		
         $this->load->view('layout/footer');
 	}
 
-	public function rekap_iktl()
+	public function rekap_iklh()
     {
 		$sel['sel'] = "rekap";
 		//$p = $this->input->post('p');
 		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y"); $year = date("Y");}
-		$data['sungai'] = $this->admin_model->get_iktl($year);		
-		
+		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");}
+		$data['sungai'] = $this->admin_model->get_rekap_iktl($year);		
+		$data['nasional'] = $this->admin_model->get_indeks_nasional($year);
 		//print_r($data);
   		$this->load->view('layout/header');
         $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/rekap_iktl', $data);
-		
-        $this->load->view('layout/footer');
-	}
-	public function rekap_ikh()
-    {
-		$sel['sel'] = "rekap";
-		//$p = $this->input->post('p');
-		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
-		$data['sungai'] = $this->admin_model->get_ikh($year);		
-		$data['iph'] = "";
-
-		//print_r($data);
-  		$this->load->view('layout/header');
-        $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/rekap_ikh', $data);
+        $this->load->view('admin_prov/rekap_iklh', $data);
 		
         $this->load->view('layout/footer');
     }
-	public function rekap_ikba()
-    {
-		$sel['sel'] = "rekap";
-		//$p = $this->input->post('p');
-		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
-		$data['sungai'] = $this->admin_model->get_ikba($year);		
-		$data['iph'] = "";
-
-		//print_r($data);
-  		$this->load->view('layout/header');
-        $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/rekap_ikba', $data);
-		
-        $this->load->view('layout/footer');
-    }
-	public function rekap_ikta()
-    {
-		$sel['sel'] = "rekap";
-		//$p = $this->input->post('p');
-		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
-		$data['sungai'] = $this->admin_model->get_ikta($year);		
-		$data['iph'] = "";
-
-		//print_r($data);
-  		$this->load->view('layout/header');
-        $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/rekap_ikta', $data);
-		
-        $this->load->view('layout/footer');
-    }
-	public function rekap_ith()
-    {
-		$sel['sel'] = "rekap";
-		//$p = $this->input->post('p');
-		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
-		$data['sungai'] = $this->admin_model->get_ith($year);		
-		$data['iph'] = "";
-
-		//print_r($data);
-  		$this->load->view('layout/header');
-        $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/rekap_ith', $data);
-		
-        $this->load->view('layout/footer');
-	}
-	
-	public function rekap_iph()
-    {
-		$sel['sel'] = "rekap";
-		//$p = $this->input->post('p');
-		$year = $this->uri->segment('3');
-		if (isset($year)){$data['tahun'] = $year;} else {$data['tahun'] = date("Y");$year = date("Y");}
-		$data['sungai'] = $this->admin_model->get_iph($year);		
-		$data['iph'] = "";
-
-		//print_r($data);
-  		$this->load->view('layout/header');
-        $this->load->view('layout/navigation_prov', $sel);
-        $this->load->view('admin_prov/rekap_iph', $data);
-		
-        $this->load->view('layout/footer');
-	}
-	
-	
-
 	/* users menu */
 	
 	public function users()

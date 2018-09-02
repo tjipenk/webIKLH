@@ -1,6 +1,6 @@
 <div class="container header">
 <div class="pull-left row">
-<h1 class="page_title_text">Data Indeks Kualitas Tutupan Lahan</h1>
+<h1 class="page_title_text">Data Indeks Kualitas Tutupan Lingkungan Hidup</h1>
 <h1 class="page_title_text">Tahun <?php echo $this->uri->segment('3'); ?></h1>
 </div>
 <?php /*
@@ -27,13 +27,12 @@
 			<table class="table datatable table-striped" id="datatable">
                                         <thead>
                                             <tr>
-                                                <th>Kabupaten</th>
-                                                <th>ITH</th>
-                                                <th>IKT</th>
-                                                <th>IPH</th>
-                                                <th>IKH</th>
-                                                <th>IKBA</th>
-												<th>IKTL</th>
+                                                <th>Provinsi</th>
+                                                <th>IKA</th>
+                                                <th>IKU</th>
+                                                <th>IKTL</th>
+                                                <th>IKLH</th>
+
                                                 
 
                                             </tr>
@@ -47,14 +46,12 @@
                                                         <?php foreach($sungai as $pub): ?>
 														
 
-                                                        <tr data-id="<?php echo $pub['id_wilayah']; ?>">
-                                                            <td><?php echo $this->admin_model->get_nama_wilayah($pub['id_wilayah'])[0]['nama'];?></td>
-                                                            <td><?php echo round($pub['ith'],2);?></td>																											
-                                                            <td><?php echo round($pub['ikt'],2);?></td>																											
-                                                            <td><?php echo round($pub['iph'],2);?></td>																											
-                                                            <td><?php echo round($pub['ikh'],2);?></td>																											
-                                                            <td><?php echo round($pub['ikba'],2);?></td>																											
-                                                            <td><?php echo round($pub['iktl'],2);?></td>																											
+                                                        <tr data-id="<?php echo $pub['id']; ?>">
+                                                            <td><?php echo $this->admin_model->get_nama_wilayah($pub['id_prov'])[0]['nama'];?></td>
+                                                            <td><?php echo $pub['ika'];?></td>																											
+                                                            <td><?php echo $pub['iku'];?></td>																											
+                                                            <td><?php echo $pub['iktl'];?></td>																											
+                                                            <td><?php echo $pub['iklh'];?></td>																																																				
                                                         </tr>                                                        
                                                         
                                                         <?php endforeach; ?>
@@ -65,6 +62,13 @@
                                                     No Data Sungai.
 
                                                 <?php endif; ?>
+                                                       <tr data-id="<?php echo 0; ?>">
+                                                            <td><?php echo $this->admin_model->get_nama_wilayah(0)[0]['nama'];?></td>
+                                                            <td><?php echo number_format($nasional['ika'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional['iku'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional['iktl'], 2); ?></td>																										
+                                                            <td><?php echo number_format($nasional['iklh'], 2); ?></td>																										
+                                                        </tr>      
 
 
                                         </tbody>

@@ -1,7 +1,6 @@
 <div class="container header">
 <div class="pull-left row">
-<h1 class="page_title_text">Data Indeks Kualitas Tutupan Lahan</h1>
-<h1 class="page_title_text">Tahun <?php echo $this->uri->segment('3'); ?></h1>
+<h1 class="page_title_text">Dashboard Perhitungan IKLH</h1>
 </div>
 <?php /*
 <a href="<?php echo site_url('admin/add_data_sungai'); ?>" style="float:right;">
@@ -27,14 +26,11 @@
 			<table class="table datatable table-striped" id="datatable">
                                         <thead>
                                             <tr>
-                                                <th>Kabupaten</th>
-                                                <th>ITH</th>
-                                                <th>IKT</th>
-                                                <th>IPH</th>
-                                                <th>IKH</th>
-                                                <th>IKBA</th>
-												<th>IKTL</th>
-                                                
+                                                <th>Provinsi</th>
+                                                <th>IKTL <?php echo date("Y",strtotime("-2 year")); ?></th>
+												<th>IKTL <?php echo date("Y",strtotime("-1 year")); ?></th>
+												<th>IKTL <?php echo date("Y"); ?></th>
+                                                       
 
                                             </tr>
                                         </thead>
@@ -47,14 +43,11 @@
                                                         <?php foreach($sungai as $pub): ?>
 														
 
-                                                        <tr data-id="<?php echo $pub['id_wilayah']; ?>">
-                                                            <td><?php echo $this->admin_model->get_nama_wilayah($pub['id_wilayah'])[0]['nama'];?></td>
-                                                            <td><?php echo round($pub['ith'],2);?></td>																											
-                                                            <td><?php echo round($pub['ikt'],2);?></td>																											
-                                                            <td><?php echo round($pub['iph'],2);?></td>																											
-                                                            <td><?php echo round($pub['ikh'],2);?></td>																											
-                                                            <td><?php echo round($pub['ikba'],2);?></td>																											
-                                                            <td><?php echo round($pub['iktl'],2);?></td>																											
+                                                        <tr data-id="<?php echo $pub['kode']; ?>">
+                                                            <td><?php echo $this->admin_model->get_nama_wilayah($pub['kode'])[0]['nama'];?></td>
+                                                            <td><?php echo number_format($pub['iklh2'], 2); ?></td>																						
+                                                            <td><?php echo number_format($pub['iklh1'], 2); ?></td>																						
+                                                            <td><?php echo number_format($pub['iklh'], 2); ?></td>																										
                                                         </tr>                                                        
                                                         
                                                         <?php endforeach; ?>
@@ -66,6 +59,12 @@
 
                                                 <?php endif; ?>
 
+                                                        <tr data-id="<?php echo 0; ?>">
+                                                            <td><?php echo $this->admin_model->get_nama_wilayah(0)[0]['nama'];?></td>
+                                                            <td><?php echo number_format($nasional2['iklh'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional1['iklh'], 2); ?></td>																						
+                                                            <td><?php echo number_format($nasional['iklh'], 2); ?></td>																										
+                                                        </tr>       
 
                                         </tbody>
                                     </table>

@@ -31,7 +31,23 @@ class Lap_prov_model extends CI_Model
 
 	}
 
-	
+	public function get_data_udara_n($year) {
+		$id_prov = $this->session->userdata("provinsi");
+
+		$this->db->select('*');
+		$this->db->from('tbl_udara');
+		//$this->db->join('wilayah', 'wilayah.kode = tbl_udara.id_prov');
+		// $this->db->like('id_prov', $id_prov);		
+		$this->db->where('id_prov', $id_prov);		
+		//$this->db->where('id_prov',$i);
+		$this->db->where('year(tanggal)',$year);
+		
+		//$this->db->limit(1);
+		$query = $this->db->get();
+		 return $query->result_array();
+		//var_dump($query->first_row());
+	}
+
 
 	public function get_lokasi_udara($offset = null, $search = "", $filter = "Popular", $all = "", $id_prov) 
 	{
@@ -505,6 +521,42 @@ class Lap_prov_model extends CI_Model
 		return $result;
 	}
     
+	function get_peruntukan($i) {
+		switch ($i) {
+			case 1:
+				$r = "Transportasi";
+				break;
+			case 2:
+				$r = "Industri";
+				break;
+			case 3:
+				$r = "Perkantoran";
+				break;
+			case 4:
+				$r = "Perumahan";
+				break;
+			case 0:
+				$r = "BLANK";
+				break;	
+		}
+
+		return $r;
+	}
+
+	function removeDataUdara($i){
+		$this->db->where('id_udara', $i);
+		$this->db->delete('tbl_udara');
+		
+		return "del";
+	}
+	
+	function get_data_udara_id($id){
+		$this->db->where('id_udara', $id);
+		$get = $this->db->get('tbl_udara');
+		
+		return $get->row();
+	}
+	
 }
 
 ?>
